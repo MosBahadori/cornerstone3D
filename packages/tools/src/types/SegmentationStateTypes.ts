@@ -59,6 +59,7 @@ export type Segmentation = {
 export type LabelmapRenderingConfig = {
   cfun: vtkColorTransferFunction;
   ofun: vtkPiecewiseFunction;
+  colorLUTIndex: number;
 };
 
 export type ContourRenderingConfig = {};
@@ -137,6 +138,6 @@ export type RepresentationPublicInput = {
   segmentationId: string;
   type?: Enums.SegmentationRepresentations;
   config?: {
-    colorLUTOrIndex?: Types.ColorLUT[] | number;
+    colorLUTOrIndex?: Types.ColorLUT | number;
   };
 };

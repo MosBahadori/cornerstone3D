@@ -224,6 +224,10 @@ export class AngleTool extends AnnotationTool {
     // (undocumented)
     handleSelectedCallback(evt: EventTypes_2.InteractionEventType, annotation: AngleAnnotation, handle: ToolHandle): void;
     // (undocumented)
+    static hydrate: (viewportId: string, points: Types_2.Point3[], options?: {
+        annotationUID?: string;
+    }) => AngleAnnotation;
+    // (undocumented)
     isDrawing: boolean;
     // (undocumented)
     isHandleOutsideImage: boolean;
@@ -597,6 +601,10 @@ export class ArrowAnnotateTool extends AnnotationTool {
     // (undocumented)
     handleSelectedCallback(evt: EventTypes_2.InteractionEventType, annotation: ArrowAnnotation, handle: ToolHandle): void;
     // (undocumented)
+    static hydrate: (viewportId: string, points: Types_2.Point3[], text?: string, options?: {
+        annotationUID?: string;
+    }) => ArrowAnnotation;
+    // (undocumented)
     isDrawing: boolean;
     // (undocumented)
     isHandleOutsideImage: boolean;
@@ -645,7 +653,7 @@ export abstract class BaseTool {
     // (undocumented)
     applyActiveStrategy(enabledElement: Types_2.IEnabledElement, operationData: unknown): any;
     // (undocumented)
-    applyActiveStrategyCallback(enabledElement: Types_2.IEnabledElement, operationData: unknown, callbackType: StrategyCallbacks | string): any;
+    applyActiveStrategyCallback(enabledElement: Types_2.IEnabledElement, operationData: unknown, callbackType: StrategyCallbacks | string, ...extraArgs: any[]): any;
     // (undocumented)
     configuration: Record<string, any>;
     // (undocumented)
@@ -905,6 +913,8 @@ export class BrushTool extends BaseTool {
         referencedVolumeId?: undefined;
         override?: undefined;
     };
+    // (undocumented)
+    getStatistics(element: any, segmentIndices?: any): any;
     // (undocumented)
     invalidateBrushCursor(): void;
     // (undocumented)
@@ -1226,6 +1236,10 @@ export class CircleROITool extends AnnotationTool {
     _endCallback: (evt: EventTypes_2.InteractionEventType) => void;
     // (undocumented)
     handleSelectedCallback: (evt: EventTypes_2.InteractionEventType, annotation: CircleROIAnnotation, handle: ToolHandle) => void;
+    // (undocumented)
+    static hydrate: (viewportId: string, points: Types_2.Point3[], options?: {
+        annotationUID?: string;
+    }) => CircleROIAnnotation;
     // (undocumented)
     isDrawing: boolean;
     // (undocumented)
@@ -1751,7 +1765,7 @@ export class CrosshairsTool extends AnnotationTool {
     // (undocumented)
     cancel: () => void;
     // (undocumented)
-    _checkIfViewportsRenderingSameScene: (viewport: any, otherViewport: any) => boolean;
+    _checkIfViewportsRenderingSameScene: (viewport: any, otherViewport: any) => any;
     // (undocumented)
     computeToolCenter: () => void;
     // (undocumented)
@@ -2161,6 +2175,10 @@ export class EllipticalROITool extends AnnotationTool {
     // (undocumented)
     handleSelectedCallback: (evt: EventTypes_2.InteractionEventType, annotation: EllipticalROIAnnotation, handle: ToolHandle) => void;
     // (undocumented)
+    static hydrate: (viewportId: string, points: Types_2.Point3[], options?: {
+        annotationUID?: string;
+    }) => EllipticalROIAnnotation;
+    // (undocumented)
     isDrawing: boolean;
     // (undocumented)
     isHandleOutsideImage: boolean;
@@ -2500,12 +2518,13 @@ type FloodFillOptions = {
     onBoundary?: (x: number, y: number, z?: number) => void;
     equals?: (a: any, b: any) => boolean;
     diagonals?: boolean;
+    bounds?: Map<number, Types_2.Point2 | Types_2.Point3>;
+    filter?: (point: any) => boolean;
 };
 
 // @public (undocumented)
 type FloodFillResult = {
     flooded: Types_2.Point2[] | Types_2.Point3[];
-    boundaries: Types_2.Point2[] | Types_2.Point3[];
 };
 
 // @public (undocumented)
@@ -3392,6 +3411,10 @@ export class LengthTool extends AnnotationTool {
     // (undocumented)
     handleSelectedCallback(evt: EventTypes_2.InteractionEventType, annotation: LengthAnnotation, handle: ToolHandle): void;
     // (undocumented)
+    static hydrate: (viewportId: string, points: Types_2.Point3[], options?: {
+        annotationUID?: string;
+    }) => LengthAnnotation;
+    // (undocumented)
     isDrawing: boolean;
     // (undocumented)
     isHandleOutsideImage: boolean;
@@ -4122,6 +4145,10 @@ export class ProbeTool extends AnnotationTool {
     // (undocumented)
     handleSelectedCallback(evt: EventTypes_2.InteractionEventType, annotation: ProbeAnnotation): void;
     // (undocumented)
+    static hydrate: (viewportId: string, points: Types_2.Point3[], options?: {
+        annotationUID?: string;
+    }) => ProbeAnnotation;
+    // (undocumented)
     isDrawing: boolean;
     // (undocumented)
     isHandleOutsideImage: boolean;
@@ -4420,6 +4447,10 @@ export class RectangleROITool extends AnnotationTool {
     };
     // (undocumented)
     handleSelectedCallback: (evt: EventTypes_2.InteractionEventType, annotation: RectangleROIAnnotation, handle: ToolHandle) => void;
+    // (undocumented)
+    static hydrate: (viewportId: string, points: Types_2.Point3[], options?: {
+        annotationUID?: string;
+    }) => RectangleROIAnnotation;
     // (undocumented)
     isDrawing: boolean;
     // (undocumented)
@@ -4844,6 +4875,7 @@ declare namespace segmentation_2 {
         setBrushSizeForToolGroup,
         getBrushThresholdForToolGroup,
         setBrushThresholdForToolGroup,
+        VolumetricCalculator,
         thresholdSegmentationByRange,
         contourAndFindLargestBidirectional,
         createBidirectionalToolData,
@@ -4869,6 +4901,7 @@ type SegmentationAddedEventType = Types_2.CustomEventType<SegmentationAddedEvent
 type SegmentationDataModifiedEventDetail = {
     segmentationId: string;
     modifiedSlicesToUse?: number[];
+    segmentIndex?: number;
 };
 
 // @public (undocumented)
@@ -5245,6 +5278,11 @@ export class SplineROITool extends ContourSegmentationBaseTool {
     // (undocumented)
     handleSelectedCallback: (evt: EventTypes_2.InteractionEventType, annotation: SplineROIAnnotation, handle: ToolHandle) => void;
     // (undocumented)
+    static hydrate: (viewportId: string, points: Types_2.Point3[], options?: {
+        annotationUID?: string;
+        splineType?: SplineTypesEnum;
+    }) => SplineROIAnnotation;
+    // (undocumented)
     protected isContourSegmentationTool(): boolean;
     // (undocumented)
     isDrawing: boolean;
@@ -5384,6 +5422,8 @@ enum StrategyCallbacks {
     CreateIsInThreshold = "createIsInThreshold",
     // (undocumented)
     Fill = "fill",
+    // (undocumented)
+    GetStatistics = "getStatistics",
     // (undocumented)
     Initialize = "initialize",
     // (undocumented)
@@ -5896,7 +5936,7 @@ function triggerAnnotationRenderForViewportIds(viewportIdsToRender: string[]): v
 function triggerEvent(el: EventTarget, type: string, detail?: unknown): boolean;
 
 // @public (undocumented)
-function triggerSegmentationDataModified(segmentationId: string, modifiedSlicesToUse?: number[]): void;
+function triggerSegmentationDataModified(segmentationId: string, modifiedSlicesToUse?: number[], segmentIndex?: number): void;
 
 declare namespace triggerSegmentationEvents {
     export {
@@ -6344,6 +6384,15 @@ export class VolumeRotateTool extends BaseTool {
     mouseWheelCallback(evt: MouseWheelEventType): void;
     // (undocumented)
     static toolName: any;
+}
+
+// @public (undocumented)
+class VolumetricCalculator extends BasicStatsCalculator_2 {
+    // (undocumented)
+    static getStatistics(options: {
+        spacing?: number;
+        unit?: string;
+    }): NamedStatistics;
 }
 
 declare namespace windowLevel_2 {
