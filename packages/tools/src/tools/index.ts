@@ -21,6 +21,7 @@ import VolumeRotateTool from './VolumeRotateTool';
 // Annotation tools
 import BidirectionalTool from './annotation/BidirectionalTool';
 import LengthTool from './annotation/LengthTool';
+import HipCupTool from './annotation/HipCupTool';
 import HeightTool from './annotation/HeightTool';
 import ProbeTool from './annotation/ProbeTool';
 import DragProbeTool from './annotation/DragProbeTool';
@@ -76,6 +77,7 @@ export {
   SegmentationIntersectionTool,
   BidirectionalTool,
   LengthTool,
+  HipCupTool,
   HeightTool,
   ProbeTool,
   RectangleROITool,

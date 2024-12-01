@@ -32,6 +32,7 @@ import {
   PlanarRotateTool,
   MIPJumpToClickTool,
   LengthTool,
+  HipCupTool,
   HeightTool,
   ProbeTool,
   RectangleROITool,
@@ -102,6 +103,7 @@ export {
   MIPJumpToClickTool,
   // Annotation Tools
   LengthTool,
+  HipCupTool,
   HeightTool,
   CrosshairsTool,
   ReferenceLinesTool,

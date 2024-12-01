@@ -4,6 +4,7 @@ import drawEllipse from './drawEllipse';
 import drawEllipseByCoordinates from './drawEllipseByCoordinates';
 import drawHandles from './drawHandles';
 import drawHandle from './drawHandle';
+import drawHipCup from './drawHipCup';
 import drawLine from './drawLine';
 import drawHeight from './drawHeight';
 import drawPolyline from './drawPolyline';
@@ -24,6 +25,7 @@ export {
   drawEllipseByCoordinates,
   drawHandles,
   drawHandle,
+  drawHipCup,
   drawLine,
   drawHeight,
   drawPolyline,
